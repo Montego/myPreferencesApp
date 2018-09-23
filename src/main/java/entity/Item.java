@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Item extends AbstractEntity {
     @ManyToMany
     private User user;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
     @Column(nullable = false)
     private LocalDate year;   // TODO ?

@@ -14,4 +14,6 @@ import javax.persistence.Table;
 public class Friends extends AbstractEntity {
     @ManyToOne
     private User user;
+
+
 }

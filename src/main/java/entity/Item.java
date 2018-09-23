@@ -16,7 +16,7 @@ public class Item extends AbstractEntity {
     @Column(nullable = false,unique = true)
     private String name;
     @Column(nullable = false)
-    private LocalDate date;   // TODO ?
+    private LocalDate year;   // TODO ?
     @ManyToOne
     private Country country;
     @ManyToOne                  //TODO ?
@@ -27,14 +27,14 @@ public class Item extends AbstractEntity {
     private Genre genre;
     @Column
     private String comment;
-
+    @OneToOne
     private Rate rate;  //TODO ?
     @OneToOne
     private Score score;
     @Column(nullable = false)
     private boolean isPrivate;
     @Column(nullable = false)
-    private boolean isWathced;
+    private boolean isWatched;
     @Column(nullable = false)
     private boolean isImportant;
 }

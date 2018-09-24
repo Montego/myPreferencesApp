@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 
 @Getter
@@ -18,16 +19,31 @@ public class User extends AbstractEntity {
     private String email;
     @Column(nullable = false)
     private String password;
-    @OneToMany                       //TODO ?
+    @ManyToOne
     private Authority authority;
-    @OneToMany
-    private Friends friends;
     @Column
     private Timestamp registrated;
-                                    //TODO ?
+    @Column                                //TODO ?
     private byte photo;
-    @ManyToMany
-    private Item item;
+
+
+ //*********************************************************************************************************************
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_FRIENDS",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "FRIENDS_ID")
+    )
+    private Collection <Friends> friendsToUsers;
+    //*********************************************************************************************************************
+    //*********************************************************************************************************************
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "USER_ITEM",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
+    )
+    private Collection<Item> itemsToUsers;
+    //*********************************************************************************************************************
+
 
     public User(String nickname,String email, String password) {
         this.nickname = nickname;

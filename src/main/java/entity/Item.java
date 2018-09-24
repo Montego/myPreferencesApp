@@ -5,14 +5,17 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Collection;
 
 @Getter
 @Setter
 @Entity
 @Table
 public class Item extends AbstractEntity {
-    @ManyToMany
-    private User user;
+
+    @ManyToMany(mappedBy = "itemsToUsers")
+    private Collection<User> usersToItems;
+
     @Column(nullable = false, unique = true)
     private String name;
     @Column(nullable = false)
@@ -23,8 +26,14 @@ public class Item extends AbstractEntity {
     private Type type;
     @ManyToOne
     private Category category;
-    @ManyToMany
-    private Genre genre;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "ITEM_GENRE",
+            joinColumns = @JoinColumn(name = "ITEM_ID"),
+            inverseJoinColumns = @JoinColumn(name = "GENRE_ID")
+    )
+    private Collection<Genre> genresToItems;
+
     @Column
     private String comment;
     @OneToOne
@@ -32,9 +41,9 @@ public class Item extends AbstractEntity {
     @OneToOne
     private Score score;
     @Column(nullable = false)
-    private boolean isPrivate;
+    private boolean privateBoolean;
     @Column(nullable = false)
-    private boolean isWatched;
+    private boolean watchedBoolean;
     @Column(nullable = false)
-    private boolean isImportant;
+    private boolean importantBoolean;
 }

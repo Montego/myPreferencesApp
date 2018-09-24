@@ -15,6 +15,6 @@ import javax.persistence.Table;
 public class Type extends AbstractEntity{
     @Column
     private String name;
-    @OneToMany
-    private Item item;
+//    @OneToMany
+//    private Item item;
 }

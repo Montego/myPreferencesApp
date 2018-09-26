@@ -1,4 +1,4 @@
-package runscripts;
+package utils;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.impl.*;

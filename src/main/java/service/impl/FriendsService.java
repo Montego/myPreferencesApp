@@ -23,16 +23,16 @@ public class FriendsService implements IFriendsService {
 
     @Override
     public List<Friends> getAllFriends() {
-        return null;
+        return friendsRepository.findAll();
     }
 
     @Override
-    public Friends addFriend(String nickname) {
-        return null;
+    public Friends addFriend(Friends friend) {
+        return friendsRepository.save(friend);
     }
 
     @Override
     public void deleteFriend(String nickname) {
-
+        
     }
 }

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Collection;
@@ -16,5 +15,6 @@ import java.util.Collection;
 public class Friends extends AbstractEntity {
     @OneToMany(mappedBy = "friendsToUsers")
     private Collection<User> usersToFriends;
+
 
 }

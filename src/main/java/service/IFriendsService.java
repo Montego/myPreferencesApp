@@ -9,7 +9,7 @@ public interface IFriendsService {
 
     List<Friends> getAllFriends();
 
-    Friends addFriend(String nickname);
+    Friends addFriend(Friends friend);
 
     void deleteFriend(String nickname);
 
